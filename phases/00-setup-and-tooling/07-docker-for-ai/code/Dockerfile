@@ -42,6 +42,7 @@ RUN python -m pip install --no-cache-dir \
 
 RUN python -m pip install --no-cache-dir \
     qdrant-client \
+#    flask \
     numpy \
     pandas \
     scikit-learn \
@@ -56,6 +57,12 @@ WORKDIR /workspace
 
 VOLUME ["/workspace", "/models"]
 
+# for old python environment
 EXPOSE 8888
-
 CMD ["python"]
+
+
+# for new flask running
+#EXPOSE 5000
+# Bind to 0.0.0.0 so the server listens on all interfaces inside the container
+#CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]

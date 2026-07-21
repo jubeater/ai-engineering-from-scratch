@@ -169,6 +169,7 @@ def demo_nan_detection():
         nn.ReLU(),
         nn.Linear(256, 10),
     )
+    model[0].weight.data[0, 0] = float("nan")
 
     x = torch.randn(4, 784)
     target = torch.randint(0, 10, (4,))
