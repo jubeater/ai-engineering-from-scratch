@@ -16,10 +16,10 @@ services:
       - ~/datasets:/data
     ports:
       - "8888:8888"
+#      - "5000:5000"
     stdin_open: true
     tty: true
     command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
-
   qdrant:
     image: qdrant/qdrant:v1.18.0
     ports:

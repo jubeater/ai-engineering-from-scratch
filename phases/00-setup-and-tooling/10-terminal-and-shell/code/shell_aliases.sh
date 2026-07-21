@@ -77,7 +77,8 @@ trainenv() {
 
 syncto() {
     if [ -z "$1" ] || [ -z "$2" ]; then
-        echo "Usage: syncto <host> <remote_path> [local_path]"
+        echo "Usage: syncto <host> <remote_path> [lo
+cal_path]"
         echo "Example: syncto gpu ~/data ./data"
         return 1
     fi
