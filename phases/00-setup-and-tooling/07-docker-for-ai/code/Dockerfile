@@ -15,6 +15,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3.12-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Create a virtual environment using Python 3.12
+RUN python3.12 -m venv /opt/venv
+
+# Ensure all subsequent RUN/CMD instructions use this virtual environment automatically
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Upgrade pip safely inside the environment
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
+
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.12 1
 
 RUN curl -sSL https://raw.githubusercontent.com/pypa/get-pip/3b73145063be545b649ad9ca83ea8da5fc915a4f/public/get-pip.py -o /tmp/get-pip.py \
@@ -32,6 +41,7 @@ RUN python -m pip install --no-cache-dir \
     --index-url https://download.pytorch.org/whl/cu124
 
 RUN python -m pip install --no-cache-dir \
+    qdrant-client \
     numpy \
     pandas \
     scikit-learn \
